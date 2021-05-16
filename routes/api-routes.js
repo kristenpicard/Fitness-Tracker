@@ -7,7 +7,6 @@ const Workout = require("../models/workout");
 
 router.get("/api/workouts", (req, res) => {
   Workout.find({})
-    .sort({ date: -1 })
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
@@ -18,39 +17,41 @@ router.get("/api/workouts", (req, res) => {
 
 // PUT TO ADD AN EXCERCISE
 
-// router.put("/api/workouts", ({ body }, res) => {
-//   //   Transaction.insertMany(body)
-//   //     .then((dbTransaction) => {
-//   //       res.json(dbTransaction);
-//   //     })
-//   //     .catch((err) => {
-//   //       res.status(400).json(err);
-//   //     });
-// });
+router.put("/api/workouts/:id", (req, res) => {
+  Workout.findOneAndUpdate({
+    _id: req.params.id,
+  })
+    // I KNOW THERE IS MORE TO THIS?  NEED TO FIGURE OUT DURATION
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
 
 // POST TO CREATE WORKOUT
 
-// router.post("/api/workouts", ({ body }, res) => {
-//   //   Transaction.create(body)
-//   //     .then((dbTransaction) => {
-//   //       res.json(dbTransaction);
-//   //     })
-//   //     .catch((err) => {
-//   //       res.status(400).json(err);
-//   //     });
-// });
+router.post("/api/workouts", ({ body }, res) => {
+  Workout.create(body)
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
 
 // GET FOR WORKOUTS IN RANGE
-
-// router.get("/api/workouts/range", (req, res) => {
-//   //   Transaction.find({})
-//   //     .sort({ date: -1 })
-//   //     .then((dbTransaction) => {
-//   //       res.json(dbTransaction);
-//   //     })
-//   // .catch((err) => {
-//   //   res.status(400).json(err);
-//   // });
-// });
+// FEEL LIKE THERE SHOULD BE MORE TO THIS ROUTE?
+router.get("/api/workouts/range", (req, res) => {
+  Workout.find({})
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
 
 module.exports = router;
