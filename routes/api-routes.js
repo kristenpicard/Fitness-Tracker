@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Workout = require("../models/workout");
+const Workout = require("../models");
 
 // K10 HERE IS WHERE ADD GET, POST, PUT, DELETE ROUTES.
 // BELOW ARE EXAMPLES FROM MINI PROJECT ROUTES
