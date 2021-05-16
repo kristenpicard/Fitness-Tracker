@@ -2,20 +2,30 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-// K10 GRABBED FROM MINI PROJECT NEED TO UPDATE TO WORKOUT ITEMS
+// LOOKED OFF OF EXCERCISE.HTML FOR THESE ITEMS
 const workoutSchema = new Schema({
   name: {
     type: String,
     trim: true,
-    required: "Enter a name for transaction",
   },
-  value: {
-    type: Number,
-    required: "Enter an amount",
+  distance: {
+    // miles
   },
   date: {
     type: Date,
     default: Date.now,
+  },
+  duration: {
+    // minutes
+  },
+  weight: {
+    // lbs
+  },
+  sets: {
+    // number
+  },
+  reps: {
+    // number
   },
 });
 
