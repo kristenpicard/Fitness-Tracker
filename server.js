@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // routes
-require("./public/api");
+require("./routes/api-routes");
 require("./routes/html-routes");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
