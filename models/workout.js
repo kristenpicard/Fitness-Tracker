@@ -4,33 +4,37 @@ const Schema = mongoose.Schema;
 
 // USED EXCERCISE.HTML FOR THESE ITEMS
 const workoutSchema = new Schema({
-  name: {
-    type: String,
-    trim: true,
-  },
-  distance: {
-    // miles
-    type: Number,
-  },
-  date: {
+  exercises: [
+    {
+      type: {
+        type: String,
+        trim: true,
+      },
+      name: {
+        type: String,
+        trim: true,
+      },
+      duration: {
+        type: Number,
+      },
+      weight: {
+        type: Number,
+      },
+      reps: {
+        type: Number,
+      },
+      sets: {
+        type: Number,
+      },
+      distance: {
+        type: Number,
+      },
+    },
+  ],
+
+  day: {
     type: Date,
     default: Date.now,
-  },
-  duration: {
-    // minutes
-    type: Number,
-  },
-  weight: {
-    // lbs
-    type: Number,
-  },
-  sets: {
-    // number
-    type: Number,
-  },
-  reps: {
-    // number
-    type: Number,
   },
 });
 
