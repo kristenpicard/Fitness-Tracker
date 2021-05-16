@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-// LOOKED OFF OF EXCERCISE.HTML FOR THESE ITEMS
+// USED EXCERCISE.HTML FOR THESE ITEMS
 const workoutSchema = new Schema({
   name: {
     type: String,
@@ -10,6 +10,7 @@ const workoutSchema = new Schema({
   },
   distance: {
     // miles
+    type: Number,
   },
   date: {
     type: Date,
@@ -17,15 +18,19 @@ const workoutSchema = new Schema({
   },
   duration: {
     // minutes
+    type: Number,
   },
   weight: {
     // lbs
+    type: Number,
   },
   sets: {
     // number
+    type: Number,
   },
   reps: {
     // number
+    type: Number,
   },
 });
 
