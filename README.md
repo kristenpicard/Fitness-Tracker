@@ -10,7 +10,7 @@ This full-stack web application uses MongoDB, Mongoose, Express and NodeJS.
 
 ## Application Depoloyment
 
-Click this link to take you to the deployed app: ADD LINK HERE KRISTEN
+Click this link to take you to the deployed app: https://shrouded-plateau-21534.herokuapp.com/
 
 ## Table of Contents
 
