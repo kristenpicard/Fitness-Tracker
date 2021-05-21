@@ -3,30 +3,37 @@ const Workout = require("../models/workout");
 
 // ACCORDING TO API.JS WILL NEED
 
-// GET RECENT WORKOUT
+// GET RECENT WORKOUT FOR HOME PAGE
 
 router.get("/api/workouts", (req, res) => {
-  Workout.find({})
+  Workout.aggregate([
+    {
+      $addFields: {
+        totalDuration: { $sum: "$exercises.duration" },
+      },
+    },
+  ])
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
     .catch((err) => {
-      res.status(400).json(err);
+      res.status(400).json(err.message);
     });
 });
 
 // PUT TO ADD AN EXCERCISE
 
 router.put("/api/workouts/:id", (req, res) => {
-  Workout.findOneAndUpdate({
-    _id: req.params.id,
-  })
-    // I KNOW THERE IS MORE TO THIS?  NEED TO FIGURE OUT DURATION
+  Workout.findOneAndUpdate(
+    { _id: req.params.id },
+    { $push: { exercises: req.body } },
+    { new: true }
+  )
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
     .catch((err) => {
-      res.status(400).json(err);
+      res.status(400).json(err.message);
     });
 });
 
@@ -38,19 +45,25 @@ router.post("/api/workouts", ({ body }, res) => {
       res.json(dbWorkout);
     })
     .catch((err) => {
-      res.status(400).json(err);
+      res.status(400).json(err.message);
     });
 });
 
-// GET FOR WORKOUTS IN RANGE
-// FEEL LIKE THERE SHOULD BE MORE TO THIS ROUTE?
+// GET FOR WORKOUTS IN RANGE FOR DASH
 router.get("/api/workouts/range", (req, res) => {
-  Workout.find({})
+  Workout.aggregate([
+    // SORT NEW TO OLD
+    { $sort: { day: -1 } },
+    { $limit: 7 },
+    { $addFields: { totalDuration: { $sum: "$exercises.duration" } } },
+    // NOW SORT OLD TO NEW FOR GRAPH
+    { $sort: { day: 1 } },
+  ])
     .then((dbWorkout) => {
       res.json(dbWorkout);
     })
     .catch((err) => {
-      res.status(400).json(err);
+      res.status(400).json(err.message);
     });
 });
 
