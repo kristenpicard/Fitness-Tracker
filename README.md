@@ -30,7 +30,7 @@ Click this link to take you to the deployed app: ADD LINK HERE KRISTEN
 Sole Author: Kristen Picard
 https://github.com/kristenpicard
 
-## Screenshot
+## Demo
 
 ![Demo](assets/1.gif)
 
